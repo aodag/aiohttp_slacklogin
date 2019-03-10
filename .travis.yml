@@ -6,8 +6,8 @@ python:
 install: pip install tox-travis poetry
 script: tox
 before_deploy:
-  - poetry run install setuptools_scm
-  - poetry run python -c "from setuptools_scm import get_version;print(get_version())"
+  - poetry run pip install setuptools_scm
+  - poetry version $(poetry run python -c "from setuptools_scm import get_version;print(get_version())")
   - peotry build -vvv
 deploy:
   provider: releases
