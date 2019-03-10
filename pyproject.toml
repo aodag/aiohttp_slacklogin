@@ -4,7 +4,7 @@ version = "0.1.0"
 description = ""
 authors = ["Atsushi Odagiri <aodagx@gmail.com>"]
 license = "MIT"
-url = "https://github.com/aodag/aiohttp_slacklogin"
+homepage = "https://github.com/aodag/aiohttp_slacklogin"
 readme = "README.md"
 
 [tool.poetry.dependencies]
