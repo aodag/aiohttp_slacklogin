@@ -8,7 +8,7 @@ script: tox
 before_deploy:
   - poetry run pip install setuptools_scm
   - poetry version $(poetry run python -c "from setuptools_scm import get_version;print(get_version())")
-  - peotry build -vvv
+  - poetry build -vvv
 deploy:
   provider: releases
   api_key:
