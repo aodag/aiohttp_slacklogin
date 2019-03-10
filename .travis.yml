@@ -5,3 +5,15 @@ python:
   - "3.7"
 install: pip install tox-travis poetry
 script: tox
+before_deploy:
+  - poetry run install setuptools_scm
+  - poetry run python -c "from setuptools_scm import get_version;print(get_version())"
+  - peotry build -vvv
+deploy:
+  provider: releases
+  api_key:
+    secure: "cWnZf9y+WZsnm/g4wXt1/lsqn4G2Q49ZX8uE6H04rgUz0iPc5E0CWWi30B9Gg18GiWQBq2Y7jj676yDTu87LnoUJsso+8GjyOfcyzq64fAWvlmsHNX4B0uKJnDwz1XjTY6TNrK/5QEXLgeimIa6uV685OSgwxsGl/5QJVlaZPczXo/fRYeWnX70LB/FoDBbGIJGokOQmTRYhlMebJnrB+83CDlk6Tm52zpoLKZKyyGSUgFnVQu0Xh4wQrnefvOTsh/I1+5XNVqcnt2ZOFDzErp6W9DsE9SgMXIjN1E2P0Ma6Dm6y3VG9D6ku0Thd9yFPo07kqbR7lb/hm+v317OhEcRkOZnJe+1h6Wm8k0nlWwAGhezlhSFWkjr6TdgC+bXcqGQQZdRJ7KT3WRN9/GCvmlPPHT4z8CPcRYp4/IPkkmWITfYuLDizIn3SkADjrzoDtCj0TbzLEhrwSg+7lQ9osMqOw7PGF1oANI5VY9Wh6hP79piF/AiOS7tZmMSLNjqqeMlnyn7j7PuEV96aQyTv4eAGLEG9pXDtYEHT4P2yWiAXjfVI8dVJ/qNPiSzJ/208p0QM9i/efUq6b4W5Ul4MX6BzCkAejJqZQIdcwpn2SzGVUCFLbs06/QzSFkFxk2CVvpsu69oKOi/zsHT/FtItGVkwHPYgDY4WT5dBuCfxfbE="
+  file_glob: true
+  file: dist/*
+  skip_cleanup: true
+  draft: true
