@@ -3,7 +3,9 @@ sudo: false
 language: python
 python:
   - "3.7"
-install: pip install tox-travis poetry
+env:
+  - TOX_PIP_VERSION=18.1
+install: pip install tox-travis tox-pip-version poetry
 script: tox
 before_deploy:
   - poetry run pip install setuptools_scm
