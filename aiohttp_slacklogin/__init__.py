@@ -14,7 +14,8 @@ def setup(
     client_secret: str,
     return_url: Optional[str] = None
 ) -> None:
-    app["slacklogin.return_url"] = return_url
+    if return_url:
+        app["slacklogin.return_url"] = return_url
     slackapi.add_slack_api(
         app, redirect_uri=redirect_uri, client_id=client_id, client_secret=client_secret
     )
