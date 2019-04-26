@@ -35,4 +35,7 @@ async def oauth_callback(request: web.Request) -> web.Response:
     response = web.Response(text=f"ok {token}")
     identity = f"{token['user']['name']}+{token['user']['id']}@{token['team']['id']}"
     await remember(request, response, identity)
+    if "slacklogin.return_url" in request.app:
+        return_url = request.app["slacklogin.return_url"]
+        return web.HttpFound(return_url)
     return response
