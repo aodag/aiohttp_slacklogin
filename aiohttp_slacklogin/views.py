@@ -37,5 +37,5 @@ async def oauth_callback(request: web.Request) -> web.Response:
     await remember(request, response, identity)
     if "slacklogin.return_url" in request.app:
         return_url = request.app["slacklogin.return_url"]
-        return web.HttpFound(return_url)
+        return web.HTTPFound(return_url)
     return response
